@@ -120,8 +120,24 @@ const init = () => {
   }
   init()
   .then (promptData => {
-      console.log(promptData)
+     return generateMarkdown(promptData);
+  })
+  .then (readmePage => {
+    return writeToFile('./dist/readme.md', readmePage);
   });
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(fileName, data, err => {
+        if (err) {
+            reject(err);
+            return;
+        }
+        resolve({
+            ok: true,
+            message: 'File created! Your file is in the dist/ directory.'
+            });
+        });
+    });
+};
