@@ -35,7 +35,7 @@ const init = () => {
     {
       type: 'input',
       name: 'title',
-      message: 'What is the title of your project? (Required)',
+      message: 'What is the title of your project?',
       validate: titleInput => {
         if (titleInput) {
           return true;
